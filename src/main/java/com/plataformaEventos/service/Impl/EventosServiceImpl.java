@@ -35,4 +35,9 @@ public class EventosServiceImpl implements IEventosService {
     public void deleteById(long id) {
         eventosDAO.deleteById(id);
     }
+
+    @Override
+    public List<Eventos> filtrarOpcioncompra() {
+        return eventosDAO.filtrarOpcioncompra();
+    }
 }

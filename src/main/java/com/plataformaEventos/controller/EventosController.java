@@ -41,6 +41,8 @@ public class EventosController {
                         .fechaApertura(eventosDto.getFechaApertura())
                         .fechaCierre(eventosDto.getFechaCierre())
                         .inscripciones(eventosDto.getInscripciones())
+                        .capacidadEvento(eventosDto.getCapacidadEvento())
+                        .opcionCompra(eventosDto.isOpcionCompra())
                         .build()
         );
 
@@ -68,6 +70,7 @@ public class EventosController {
             eventoUpdate.setFechaApertura(eventosDto.getFechaApertura());
             eventoUpdate.setFechaCierre(eventosDto.getFechaCierre());
             eventoUpdate.setInscripciones(eventosDto.getInscripciones());
+            eventoUpdate.setOpcionCompra(eventosDto.isOpcionCompra());
             eventosService.save(eventoUpdate);
             return new ResponseEntity<>("Evento modificado con exito", HttpStatus.OK);
         }
@@ -106,6 +109,7 @@ public class EventosController {
                         .capacidadEvento(eventos.getCapacidadEvento())
                         .fechaApertura(eventos.getFechaApertura())
                         .fechaCierre(eventos.getFechaCierre())
+                        .opcionCompra(eventos.isOpcionCompra())
                         .build())
                 .collect(Collectors.toList());
 
@@ -136,5 +140,31 @@ public class EventosController {
         }
 
         return new ResponseEntity<>("Evento no encontrado", HttpStatus.NOT_FOUND);
+    }
+
+    @CrossOrigin
+    @GetMapping("/opcionCompra")
+    public ResponseEntity<?> filtrarOpcioncompra() {
+        List<EventosDTO> eventosDTOList = eventosService.filtrarOpcioncompra()
+                .stream()
+                .map(eventos -> EventosDTO.builder()
+                        .id(eventos.getId())
+                        .titulo(eventos.getTitulo())
+                        .descripcion(eventos.getDescripcion())
+                        .fecha(eventos.getFecha())
+                        .hora(eventos.getHora())
+                        .lugar(eventos.getLugar())
+                        .cupoDisponible(eventos.getCupoDisponible())
+                        .tipo(eventos.isTipo())
+                        .valorBase(eventos.getValorBase())
+                        .categoria(eventos.getCategoria())
+                        .capacidadEvento(eventos.getCapacidadEvento())
+                        .fechaApertura(eventos.getFechaApertura())
+                        .fechaCierre(eventos.getFechaCierre())
+                        .opcionCompra(eventos.isOpcionCompra())
+                        .build())
+                .collect(Collectors.toList());
+
+        return new ResponseEntity<>(eventosDTOList, HttpStatus.OK);
     }
 }

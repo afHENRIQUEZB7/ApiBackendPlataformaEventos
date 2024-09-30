@@ -14,5 +14,6 @@ public interface IEventosDAO {
 
     void deleteById(long id);
 
+    List<Eventos> filtrarOpcioncompra();
 
 }

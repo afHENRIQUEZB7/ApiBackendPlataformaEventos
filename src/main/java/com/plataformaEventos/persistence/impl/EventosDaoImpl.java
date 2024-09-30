@@ -34,4 +34,9 @@ public class EventosDaoImpl implements IEventosDAO {
     public void deleteById(long id) {
         eventosRepository.deleteById(id);
     }
+
+    @Override
+    public List<Eventos> filtrarOpcioncompra() {
+        return eventosRepository.findByOpcionCompraTrue();
+    }
 }

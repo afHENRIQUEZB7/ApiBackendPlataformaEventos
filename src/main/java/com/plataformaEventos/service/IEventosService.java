@@ -14,4 +14,6 @@ public interface IEventosService {
     Eventos save(Eventos eventos);
 
     void deleteById(long id);
+
+    List<Eventos> filtrarOpcioncompra();
 }

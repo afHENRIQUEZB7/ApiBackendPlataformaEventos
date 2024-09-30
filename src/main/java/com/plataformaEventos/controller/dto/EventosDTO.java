@@ -28,5 +28,6 @@ public class EventosDTO {
     private String fechaApertura;
     private String fechaCierre;
 
+    private boolean opcionCompra;
     //private List<Inscripciones> inscripciones;
 }

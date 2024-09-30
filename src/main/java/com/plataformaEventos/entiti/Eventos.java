@@ -37,7 +37,18 @@ public class Eventos {
     @Column(name = "fecha_cierre")
     private String fechaCierre;
 
+    //  Validación para que muestre que este con la opción de compra
+    @Column(name = "opcion_compra")
+    private boolean opcionCompra;
+
     @OneToMany(mappedBy = "evento")
     private List<Inscripciones> inscripciones;
+
+    @OneToMany(mappedBy = "evento", cascade = CascadeType.ALL)
+    private List<CodigoPromocional> codigosPromocionales;
+
+//    @OneToMany(cascade = CascadeType.ALL)
+//    @JoinColumn(name = "evento_id")
+//    private List<TipoEntrada> tiposEntrada;
 
 }
