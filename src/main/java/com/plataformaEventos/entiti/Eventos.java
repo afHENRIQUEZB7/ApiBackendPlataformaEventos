@@ -20,6 +20,7 @@ public class Eventos {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String titulo;
+    @Column(length = 2147483647)
     private String descripcion;
     private String fecha;
     private String hora;

@@ -47,7 +47,7 @@ public class TipoEntradaServiceImpl implements ITipoEntradaService {
         String mensaje = "";
 
         List<TipoEntrada> listaTiposEntrada = iTipoEntradaDAO.findAll();
-        if (listaTiposEntrada.size()>3) {
+        if (listaTiposEntrada.size()>2) {
             mensaje = "Ya no se aceptan más tipos de entrada \n" +
                     "los tipos de entradas son: \n" +
                     listaTiposEntrada;
@@ -57,6 +57,7 @@ public class TipoEntradaServiceImpl implements ITipoEntradaService {
         for (Map.Entry<String, Integer> entry : mapTiposEntrada.entrySet()) {
             if (tipo.equalsIgnoreCase(entry.getKey())) {
                 if(porcentaje == entry.getValue()) {
+                    tipoEntrada.setNombre(entry.getKey());
                     return iTipoEntradaDAO.save(tipoEntrada);
                 }
                 mensaje = "El valor de porcentaje no esta deacurdo con el tipo de la entrada, recuerde que los tipos " +

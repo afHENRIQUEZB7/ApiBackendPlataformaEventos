@@ -136,6 +136,7 @@ public class EventosController {
                     .capacidadEvento(eventos.getCapacidadEvento())
                     .fechaApertura(eventos.getFechaApertura())
                     .fechaCierre(eventos.getFechaCierre())
+                    .opcionCompra(eventos.isOpcionCompra())
                     .build(), HttpStatus.OK);
         }
 
