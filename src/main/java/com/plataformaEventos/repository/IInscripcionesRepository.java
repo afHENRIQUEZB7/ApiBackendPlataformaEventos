@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-//@Repository
+@Repository
 public interface IInscripcionesRepository extends CrudRepository<Inscripciones, Long> {
     List<Inscripciones> findByAsistenteId(Long asistenteId);
     List<Inscripciones> findByEventoId(Long eventoId);
