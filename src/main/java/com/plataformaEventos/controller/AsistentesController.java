@@ -17,8 +17,12 @@ import java.util.stream.Collectors;
 @RequestMapping("/api/asistentes")
 public class AsistentesController {
 
-    @Autowired
-    private IAsistentesService asistentesService;
+    public AsistentesController(IAsistentesService asistentesService) {
+        this.asistentesService = asistentesService;
+    }
+
+    private final IAsistentesService asistentesService;
+
 
     @CrossOrigin
     @PostMapping("/save")
