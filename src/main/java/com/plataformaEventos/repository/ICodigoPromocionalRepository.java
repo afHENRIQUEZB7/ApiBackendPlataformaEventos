@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-@Repository
+//@Repository
 public interface ICodigoPromocionalRepository extends CrudRepository<CodigoPromocional, Long> {
     List<CodigoPromocional> findByEventoIdAndActivoTrue(Long eventoId);
 }
