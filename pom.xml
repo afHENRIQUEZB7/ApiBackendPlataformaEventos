@@ -68,6 +68,7 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 				<configuration>
+					<mainClass>com.plataformaEventos.PlataformaEventosApplication</mainClass>
 					<excludes>
 						<exclude>
 							<groupId>org.projectlombok</groupId>
@@ -79,14 +80,6 @@
 		</plugins>
 	</build>
 
-<!--	<profiles>-->
-<!--		<profile>-->
-<!--			<id>skip-filtering</id>-->
-<!--			<properties>-->
-<!--				<maven.resources.filtering>false</maven.resources.filtering>-->
-<!--			</properties>-->
-<!--		</profile>-->
-<!--	</profiles>-->
 
 
 </project>
