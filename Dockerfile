@@ -7,8 +7,8 @@ RUN apt-get update && \
 # Copiar el código fuente
 COPY . .
 
-# Compilar el proyecto
-RUN mvn clean package -DskipTests
+# Compilar el proyecto (omitimos filtración si es necesario)
+RUN mvn clean package -DskipTests -Pskip-filtering
 
 # Usar una imagen más ligera para ejecutar la aplicación
 FROM openjdk:21-jdk-slim
