@@ -79,14 +79,14 @@
 		</plugins>
 	</build>
 
-	<profiles>
-		<profile>
-			<id>skip-filtering</id>
-			<properties>
-				<maven.resources.filtering>false</maven.resources.filtering>
-			</properties>
-		</profile>
-	</profiles>
+<!--	<profiles>-->
+<!--		<profile>-->
+<!--			<id>skip-filtering</id>-->
+<!--			<properties>-->
+<!--				<maven.resources.filtering>false</maven.resources.filtering>-->
+<!--			</properties>-->
+<!--		</profile>-->
+<!--	</profiles>-->
 
 
 </project>

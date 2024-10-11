@@ -1,14 +1,11 @@
-FROM ubuntu:latest AS build
+# Usar la imagen de Maven con OpenJDK 17 para construir el proyecto
+FROM maven:3.8.5-openjdk-17 AS build
 
-# Instalar OpenJDK y Maven
-RUN apt-get update && \
-    apt-get install -y openjdk-17-jdk maven
-
-# Copiar el código fuente
+# Copiar el código fuente al contenedor
 COPY . .
 
-# Compilar el proyecto (omitimos filtración si es necesario)
-RUN mvn clean package -DskipTests -Pskip-filtering
+# Compilar el proyecto sin pruebas y sin filtración
+RUN mvn clean package -DskipTests
 
 # Usar una imagen más ligera para ejecutar la aplicación
 FROM openjdk:21-jdk-slim
