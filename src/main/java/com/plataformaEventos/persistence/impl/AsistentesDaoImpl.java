@@ -9,14 +9,13 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 import java.util.Optional;
 
+
+
 @Component
 public class AsistentesDaoImpl implements IAsistentesDAO {
 
-    public AsistentesDaoImpl(IAsistentesRepository asistentesRepository) {
-        this.asistentesRepository = asistentesRepository;
-    }
-
-    private final IAsistentesRepository asistentesRepository;
+    @Autowired
+    private IAsistentesRepository asistentesRepository;
 
 
     @Override

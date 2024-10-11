@@ -1,5 +1,29 @@
-FROM amazoncorretto:17-alpine-jdk
+# Etapa de construcción
+FROM maven:3.8.7-openjdk-17 AS build
 
-COPY out/artifacts/plataforma_eventos_jar/plataforma-eventos.jar app.jar
+# Establecer el directorio de trabajo
+WORKDIR /app
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+# Copiar el archivo de configuración de Maven
+COPY pom.xml .
+
+# Descargar las dependencias del proyecto
+RUN mvn dependency:go-offline -B
+
+# Copiar el resto del código fuente del proyecto
+COPY src ./src
+
+# Compilar el proyecto y construir el archivo JAR
+RUN mvn package -DskipTests
+
+# Etapa final
+FROM openjdk:17-jdk-slim
+
+# Exponer el puerto de la aplicación
+EXPOSE 8080
+
+# Copiar el archivo JAR desde la etapa de construcción
+COPY --from=build /app/target/plataforma-eventos-0.0.1-SNAPSHOT.jar app.jar
+
+# Definir el punto de entrada del contenedor
+ENTRYPOINT ["java", "-jar", "app.jar"]
