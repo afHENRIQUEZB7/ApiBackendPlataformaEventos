@@ -14,7 +14,7 @@ RUN mvn dependency:go-offline -B
 COPY src ./src
 
 # Compilar el proyecto y construir el archivo JAR
-RUN mvn package -DskipTests
+RUN mvn package -DskipTests -Dmaven.compiler.source=17 -Dmaven.compiler.target=17
 
 # Etapa final
 FROM openjdk:17-slim
