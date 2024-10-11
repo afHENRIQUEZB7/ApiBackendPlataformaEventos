@@ -12,8 +12,12 @@ import java.util.Optional;
 @Service
 public class AsistentesServiceImpl implements IAsistentesService {
 
-    @Autowired
-    private  IAsistentesDAO asistentesDAO;
+
+    private final  IAsistentesDAO asistentesDAO;
+
+    public AsistentesServiceImpl(IAsistentesDAO asistentesDAO) {
+        this.asistentesDAO = asistentesDAO;
+    }
 
     @Override
     public List<Asistentes> findAll() {

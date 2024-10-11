@@ -14,8 +14,12 @@ import java.util.Optional;
 @Component
 public class AsistentesDaoImpl implements IAsistentesDAO {
 
-    @Autowired
-    private IAsistentesRepository asistentesRepository;
+
+    private final IAsistentesRepository asistentesRepository;
+
+    public AsistentesDaoImpl(IAsistentesRepository asistentesRepository) {
+        this.asistentesRepository = asistentesRepository;
+    }
 
 
     @Override
