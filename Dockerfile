@@ -1,5 +1,5 @@
 FROM amazoncorretto:17-alpine-jdk
 
-COPY target/plataforma-eventos.jar app.jar
+COPY out/artifacts/plataforma_eventos_jar/plataforma-eventos.jar
 
 ENTRYPOINT ["java", "-jar", "/app.jar"]
