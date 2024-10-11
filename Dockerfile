@@ -1,4 +1,4 @@
 FROM openjdk:17.0-slim
-COPY out/artifacts/plataforma_eventos_jar/plataforma-eventos.jar app.jar
+COPY target/plataforma-eventos-0.0.1-SNAPSHOT.jar app.jar
 EXPOSE 8080
-ENTRYPOINT ["java","-jar","/app.jar"]
+ENTRYPOINT ["java","-jar","PlataformaEventosApplication"]
