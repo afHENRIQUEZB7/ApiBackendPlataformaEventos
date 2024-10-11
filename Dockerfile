@@ -1,5 +1,5 @@
 # Etapa de construcción
-FROM maven:3.8.6-openjdk-17 AS build
+FROM maven:3.8.6 AS build
 
 # Establecer el directorio de trabajo
 WORKDIR /app
@@ -17,7 +17,7 @@ COPY src ./src
 RUN mvn package -DskipTests
 
 # Etapa final
-FROM openjdk:17-jdk-slim
+FROM openjdk:17-slim
 
 # Establecer el directorio de trabajo
 WORKDIR /app
