@@ -1,17 +1,12 @@
-# Primero, especifica la imagen base de OpenJDK
-FROM openjdk:17-jdk-slim
+FROM ubuntu:lastest AS build
+RUN apt-get update
+RUN apt-get install openjdk-17-jdk -y
+COPY . .
+RUN mvn clean package -DskipTests
 
-# Establece el directorio de trabajo
-WORKDIR /opt/app
-
-# Copia el archivo JAR de tu aplicación desde el contexto actual al directorio de trabajo dentro del contenedor
-COPY target/plataforma-eventos-0.0.1-SNAPSHOT.jar app.jar
-
-# Copia el archivo application.properties
-COPY src/main/resources/application.properties ./application.properties
-
-# Expone el puerto necesario (ajusta según tu configuración)
+FROM openjdk:21-jdk-slim
 EXPOSE 8080
+COPY --from=build /target/plataforma-eventos-0.0.1-SNAPSHOT.jar app.jar
 
-# Define el comando por defecto para ejecutar cuando se inicie el contenedor
-CMD ["java", "-jar", "app.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
+
