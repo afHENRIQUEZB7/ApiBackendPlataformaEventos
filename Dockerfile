@@ -1,5 +1,17 @@
-FROM amazoncorretto:17-alpine-jdk
+# Primero, especifica la imagen base de OpenJDK
+FROM openjdk:17-jdk-slim
 
-COPY out/artifacts/plataforma_eventos_jar/plataforma-eventos.jar app.jar
+# Establece el directorio de trabajo
+WORKDIR /opt/app
 
-ENTRYPOINT ["java", "-jar", "/app.jar"]
+# Copia el archivo JAR de tu aplicación desde el contexto actual al directorio de trabajo dentro del contenedor
+COPY target/plataforma-eventos-0.0.1-SNAPSHOT.jar app.jar
+
+# Copia el archivo application.properties
+COPY src/main/resources/application.properties ./application.properties
+
+# Expone el puerto necesario (ajusta según tu configuración)
+EXPOSE 8080
+
+# Define el comando por defecto para ejecutar cuando se inicie el contenedor
+CMD ["java", "-jar", "app.jar"]
