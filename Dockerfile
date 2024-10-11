@@ -1,5 +1,5 @@
 # Etapa de construcción
-FROM maven:3.8.7-openjdk-17 AS build
+FROM maven:3.8.8-openjdk-17 AS build
 
 # Establecer el directorio de trabajo
 WORKDIR /app
@@ -18,6 +18,9 @@ RUN mvn package -DskipTests
 
 # Etapa final
 FROM openjdk:17-jdk-slim
+
+# Establecer el directorio de trabajo
+WORKDIR /app
 
 # Exponer el puerto de la aplicación
 EXPOSE 8080
