@@ -12,20 +12,11 @@ COPY ./pom.xml /root
 COPY ./.mvn /root/.mvn
 COPY ./mvnw /root
 
-# DAR PERMISOS DE EJECUCIÓN A mvnw
-RUN chmod +x mvnw
-
 # DESCARGAR LAS DEPENDENCIAS
 RUN ./mvnw dependency:go-offline
 
-# INSTALAR ICONV PARA CONVERTIR CODIFICACIONES
-RUN apt-get update && apt-get install -y dos2unix
-
 # COPIAR EL CODIGO FUENTE DENTRO DEL CONTENEDOR
 COPY ./src /root/src
-
-# CONVERTIR A UTF-8 LOS ARCHIVOS DE PROPIEDADES Y CORREGIR FINES DE LÍNEA
-RUN find /root/src/main/resources -type f -name '*.properties' -exec dos2unix {} \;
 
 # CONSTRUIR NUESTRA APLICACION
 RUN ./mvnw clean install -DskipTests
