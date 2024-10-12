@@ -22,7 +22,7 @@ RUN ./mvnw dependency:go-offline
 COPY ./src /root/src
 
 # CONSTRUIR NUESTRA APLICACION
-RUN ./mvnw clean install -DskipTests
+RUN ./mvnw clean install -DskipTests -X
 
 # LEVANTAR NUESTRA APLICACION CUANDO EL CONTENEDOR INICIE
 ENTRYPOINT ["java","-jar","/root/target/plataforma-eventos-0.0.1-SNAPSHOT.jar"]
