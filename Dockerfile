@@ -1,10 +1,25 @@
-FROM openjdk:17-slim
+# IMAGEN MODELO
+FROM eclipse-temurin:17.0.12_7-jdk
 
-# Copiar el archivo JAR generado al directorio de la imagen
-COPY target/plataforma-eventos-0.0.1-SNAPSHOT.jar app.jar
-
-# Exponer el puerto 8080
+# INFORMAR EL PUERTO DONDE SE EJECUTA EL CONTENEDOR (INFORMATIVO)
 EXPOSE 8080
 
-# Configurar el punto de entrada para ejecutar el JAR
-ENTRYPOINT ["java","-jar","/app.jar"]
+# DEFINIR DIRECTORIO RAIZ DE NUESTRO CONTENEDOR
+WORKDIR /root
+
+# COPIAR Y PEGAR ARCHIVOS DENTRO DEL CONTENEDOR
+COPY ./pom.xml /root
+COPY ./.mvn /root/.mvn
+COPY ./mvnw /root
+
+# DESCARGAR LAS DEPENDENCIAS
+RUN ./mvnw dependency:go-offline
+
+# COPIAR EL CODIGO FUENTE DENTRO DEL CONTENEDOR
+COPY ./src /root/src
+
+# CONSTRUIR NUESTRA APLICACION
+RUN ./mvnw clean install -DskipTests
+
+# LEVANTAR NUESTRA APLICACION CUANDO EL CONTENEDOR INICIE
+ENTRYPOINT ["java","-jar","/root/target/plataforma-eventos-0.0.1-SNAPSHOT.jar"]
