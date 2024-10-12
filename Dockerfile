@@ -12,9 +12,6 @@ COPY ./pom.xml /root
 COPY ./.mvn /root/.mvn
 COPY ./mvnw /root
 
-# DAR PERMISOS DE EJECUCIÓN A mvnw
-RUN chmod +x mvnw
-
 # DESCARGAR LAS DEPENDENCIAS
 RUN ./mvnw dependency:go-offline
 
@@ -22,7 +19,7 @@ RUN ./mvnw dependency:go-offline
 COPY ./src /root/src
 
 # CONSTRUIR NUESTRA APLICACION
-RUN ./mvnw clean install -DskipTests -X
+RUN ./mvnw clean install -DskipTests
 
 # LEVANTAR NUESTRA APLICACION CUANDO EL CONTENEDOR INICIE
 ENTRYPOINT ["java","-jar","/root/target/plataforma-eventos-0.0.1-SNAPSHOT.jar"]
