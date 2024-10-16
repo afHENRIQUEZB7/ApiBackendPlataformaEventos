@@ -20,6 +20,10 @@ RUN ./mvnw dependency:go-offline
 
 # COPIAR EL CODIGO FUENTE DENTRO DEL CONTENEDOR
 COPY ./src /root/src
+COPY ./src/main/resources/application.yml /root/src/main/resources/application.yml
+
+# ASEGURAR PERMISOS CORRECTOS
+RUN chmod -R 755 /root
 
 # CONSTRUIR NUESTRA APLICACION
 RUN ./mvnw clean install -DskipTests
