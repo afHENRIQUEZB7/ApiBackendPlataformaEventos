@@ -1,4 +1,4 @@
-# Configuración del datasource para SQL Server
+# Configuracion del datasource para SQL Server
 spring:
   datasource:
     driver-class-name: 'org.postgresql.Driver'
@@ -6,7 +6,7 @@ spring:
     username: 'plataforma_eventos_user'
     password: 'lVyX3uh0XCXnFhKAGriKDxLSy3onpDH7'
 
-# Configuración de Hibernate
+# Configuracion de Hibernate
   jpa:
     hibernate:
       dialect: 'org.hibernate.dialect.PostgreSQLDialect'
